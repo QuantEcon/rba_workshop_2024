@@ -203,15 +203,14 @@
 
 
 
-\title{Computational Economics Workshop}
+\title{The AI-driven Revolution in Scientific Computing}
 
-\subtitle{The University of Melbourne}
 
 
 \author{John Stachurski}
 
 
-\date{August 2024}
+\date{RBA Nov 2024}
 
 
 \begin{document}
@@ -228,71 +227,26 @@
     \brown{Part 1}: Workshop
 
     \begin{itemize}
-        \item Current and future trends in scientific computing
-        \vspace{0.5em}
         \item AI-driven scientific computing
         \vspace{0.5em}
-        \item Applications  (hands on, using Python)
+        \item Applications  
         \vspace{0.5em}
     \end{itemize}
 
     \vspace{0.5em}
     \vspace{0.5em}
-    \brown{Part 2}: Computational Economics in Action
+    \brown{Part 2}: Hands on coding
 
-    \begin{itemize}
-        \item  Joint with James Hansen and Yong Song
-    \end{itemize}
-
-
-\end{frame}
-
-\begin{frame}
-    
-    Key questions:
-
-    \vspace{0.5em}
-
-    \begin{itemize}
-        \item What computational skills should economists learn in 2024?
-        \vspace{0.5em}
-        \item What are some interesting applications?
-        \vspace{0.5em}
-    \end{itemize}
-
-
-    \vspace{0.5em}
-    \vspace{0.5em}
-    
-    Please feel free to question / debate / share your experiences
-
-\end{frame}
-
-\begin{frame}
-
-    Flow
-    %
-    \begin{itemize}
-        \item 1:30 -- 2:30 Lecture 1
-        \item 2:30 -- 3:00 afternoon tea (staff lounge)
-        \item 3:00 -- 4:00 Lecture 2
-        \item 4:00 -- 4:15 break
-        \item 4:15 -- 5:00 Computational Economics in Action
-    \end{itemize}
-    
-
-    \vspace{0.5em}
-
-    Slides, code:
 
     \vspace{0.5em}
 
     \begin{center}
-        \url{https://github.com/QuantEcon/melbourne_2024}
+        \url{https://github.com/QuantEcon/rba_workshop_2024}
     \end{center}
 
 
 \end{frame}
+
 
 \begin{frame}
     
@@ -326,7 +280,7 @@
 
 
 \begin{frame}
-    \frametitle{Prelude: AI-driven scientific computing}
+    \frametitle{AI-driven scientific computing}
 
     AI is changing the world
 
@@ -339,7 +293,7 @@
         \vspace{0.5em}
         \item forecasting and prediction 
         \vspace{0.5em}
-        \item generative AI!
+        \item generative AI
     \end{itemize}
 
     \pause
@@ -357,7 +311,7 @@
     Projected spending on AI in 2024:
 
     \begin{itemize}
-        \item Google: \$48 billion
+        \item Google: \$50 billion
         \vspace{0.5em}
         \item Microsoft: \$60 billion
         \vspace{0.5em}
@@ -511,7 +465,7 @@
 
         \vspace{0.5em}
         \vspace{0.5em}
-    Crucially, these components must be \underline{well integrated}
+    These components must be \underline{well integrated}
 
 
 \end{frame}
@@ -519,18 +473,20 @@
 
 \begin{frame}
     
-    Popular platforms with these features
+    Platforms with these features
 
     \vspace{0.5em}
     \begin{itemize}
-        \item Pytorch
+        \item PyTorch (Llama, ChatGPT)
         \vspace{0.5em}
-        \item Google JAX (with Python)
+        \item Google JAX (Gemini, DeepMind)
+        \vspace{0.5em}
+        \item Keras (backends $=$ JAX, PyTorch)
+        \vspace{0.5em}
+        \item Mojo? (Modular (Python))
     \end{itemize}
 
-
 \end{frame}
-
 
 
 \begin{frame}[fragile]
@@ -552,38 +508,97 @@ def loss(θ, x, y):
 grad_loss = jit(grad(loss))  # Now use gradient descent 
     \end{minted}
 
-    {\footnotesize Source: JAX readthedocs}
+\end{frame}
+
+
+\begin{frame}
+    
+    Popularity
+
+    
+    \begin{figure}
+       \begin{center}
+        \scalebox{0.32}{\includegraphics[trim={0cm 0cm 0cm 0cm},clip]{c.png}}
+       \end{center}
+    \end{figure}
+
+
+\end{frame}
+
+
+
+\begin{frame}
+    
+    \Eg AlphaFold3 (Google JAX)
+
+        \vspace{0.5em}
+    \textbf{Highly accurate protein structure prediction with AlphaFold}
+
+        \vspace{0.5em}
+    John Jumper, Richard Evans, Alexander Pritzel, Tim Green, Michael Figurnov,
+    Olaf Ronneberger, Kathryn Tunyasuvunakool,\ldots 
+
+        \vspace{0.5em}
+    \underline{Nature} Vol.\ 596 (2021)
+
+    \vspace{0.5em}
+    \vspace{0.5em}
+    \vspace{0.5em}
+    \vspace{0.5em}
+    \begin{itemize}
+        \item Citation count $= ~30$K
+        \vspace{0.5em}
+        \item Nobel Prize in Chemistry 2024
+    \end{itemize}
 
 \end{frame}
 
 
 \begin{frame}
-    \frametitle{Summary}
+    \frametitle{AI tools for economic modeling}
 
-    We can't afford the same hardware as OpenAI but we do have access to cheaper
-    versions
+    AI-driven scientific computing provides many powerful new tools
 
     \vspace{0.5em}
     And most of the relevent code is open source
 
     \vspace{0.5em}
-    Thus, AI-driven scientific computing is giving us many exciting and
-    powerful new tools
+    Can be used for deep learning \underline{or} mathematical modeling
 
     \vspace{0.5em}
-    \begin{itemize}
-        \item[] $\triangleright$ for deep learning \underline{and} other kinds of
-            mathematical modeling
-    \end{itemize}
+    In particular, can be used to accelerate macro models
 
-    \vspace{0.5em}
-    \vspace{0.5em}
-
-    Let's use them!
 
 \end{frame}
 
 
+\begin{frame}
+    \frametitle{Case Study}
+
+    The CBC uses the ``overborrowing'' model of Bianchi (2011)
+
+    \begin{itemize}
+        \item credit constraint loosens during booms
+        \item bad shocks $\to$ sudden stops
+    \end{itemize}
+
+    \vspace{0.5em}
+    CBC implementation in MATLAB 
+
+    \begin{itemize}
+        \item runs on \$10K mainframe with 356 CPUs and 1TB RAM
+        \item runtime $=$ 12 hours
+    \end{itemize}
+
+    \vspace{0.5em}
+    Rewrite in Python JAX
+
+    \begin{itemize}
+        \item runs on \$400 gaming GPU 
+        \item runtime $=$ 4.17 seconds
+    \end{itemize}
+
+\end{frame}
 
 
 
