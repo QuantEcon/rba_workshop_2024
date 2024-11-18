@@ -203,7 +203,7 @@
 
 
 
-\title{The AI-driven Revolution in Scientific Computing}
+\title{AI is Driving a Revolution in Scientific Computing}
 
 
 
@@ -224,7 +224,7 @@
 \begin{frame}
     \frametitle{Topics}
 
-    \brown{Part 1}: Workshop
+    \brown{Part 1}: Slides
 
     \begin{itemize}
         \item AI-driven scientific computing
@@ -245,36 +245,6 @@
     \end{center}
 
 
-\end{frame}
-
-
-\begin{frame}
-    
-    Quick poll:
-
-    \begin{itemize}
-        \item Python programmers?
-    \vspace{0.5em}
-            \begin{itemize}
-                \item NumPy?  Numba?  PyTorch? JAX?
-            \end{itemize}
-    \vspace{0.5em}
-        \item Julia?
-    \vspace{0.5em}
-        \item R?
-    \vspace{0.5em}
-        \item MATLAB?
-    \vspace{0.5em}
-        \item C?
-    \vspace{0.5em}
-        \item Fortran?
-    \end{itemize}
-
-
-    \vspace{0.5em}
-    \vspace{0.5em}
-    Regular GPU users?
-    
 \end{frame}
 
 
@@ -334,8 +304,7 @@
 \begin{frame}
     \frametitle{Deep learning in two slides}
     
-    Aim: find an approximation to an unknown functional
-    relationship
+    Aim: approximate an unknown functional relationship
     %
     \begin{equation*}
         y = f(x)
@@ -427,8 +396,58 @@
 
 \end{frame}
 
+
+
+
 \begin{frame}
-    \frametitle{Hardware}
+    \frametitle{How does it work?}
+    
+    Why is it possible in such high dimensions?
+
+        \vspace{0.5em}
+    Core elements
+    %
+    \begin{itemize}
+        \item automatic differentiation (for \underline{gradient} descent)
+        \vspace{0.5em}
+        \item parallelization (GPUs! --- how many?)
+        \vspace{0.5em}
+        \item Compilers / JIT-compilers
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Automatic differentiation}
+
+    \vspace{0.5em}
+    ``Exact numerical'' differentiation
+    
+    \begin{minted}{python}
+def f(θ):
+  return jnp.sum(jnp.cos(θ))
+
+df = grad(f)
+    \end{minted}
+
+\end{frame}
+
+
+\begin{frame}[fragile]
+    \frametitle{Parallelization}
+
+    \vspace{0.5em}
+    
+    \begin{minted}{python}
+outputs = vmap(f, data)  
+
+outputs = pmap(f, data)  
+    \end{minted}
+
+\end{frame}
+
+
+\begin{frame}
     
     \begin{figure}
        \begin{center}
@@ -440,54 +459,26 @@
 \end{frame}
 
 
-\begin{frame} 
-    
-    ``NVIDIA supercomputers are the factories of the AI industrial
-    revolution.'' -- Jensen Huang
-
-\end{frame}
-
-
-
-
-\begin{frame}
-    \frametitle{Software}
-    
-    Core elements
-    %
-    \begin{itemize}
-        \item automatic differentiation (for \underline{gradient} descent)
-        \vspace{0.5em}
-        \item parallelization (GPUs! --- how many?)
-        \vspace{0.5em}
-        \item Compilers / JIT-compilers
-    \end{itemize}
-
-        \vspace{0.5em}
-        \vspace{0.5em}
-    These components must be \underline{well integrated}
-
-
-\end{frame}
-
-
-\begin{frame}
-    
-    Platforms with these features
+\begin{frame}[fragile]
+    \frametitle{Just-in-time compilers}
 
     \vspace{0.5em}
+    
+    \begin{minted}{python}
+@jit
+def f(x):
+    return jnp.sin(x) - jnp.cos(x**2)
+    \end{minted}
+
+    Advantages:
+
     \begin{itemize}
-        \item PyTorch (Llama, ChatGPT)
-        \vspace{0.5em}
-        \item Google JAX (Gemini, DeepMind)
-        \vspace{0.5em}
-        \item Keras (backends $=$ JAX, PyTorch)
-        \vspace{0.5em}
-        \item Mojo? (Modular (Python))
+        \item compiler needs less type information
+        \item can specialize based on parameter types / shapes
+        \item can automatically specialize to CPU / GPU / TPU 
     \end{itemize}
 
 \end{frame}
-
 
 \begin{frame}[fragile]
     
@@ -509,6 +500,26 @@ grad_loss = jit(grad(loss))  # Now use gradient descent
     \end{minted}
 
 \end{frame}
+
+\begin{frame}
+    \frametitle{Platforms}
+    
+    Platforms that support AI / deep learning:
+
+    \vspace{0.5em}
+    \begin{itemize}
+        \item PyTorch (Llama, ChatGPT)
+        \vspace{0.5em}
+        \item Google JAX (Gemini, DeepMind)
+        \vspace{0.5em}
+        \item Keras (backends $=$ JAX, PyTorch)
+        \vspace{0.5em}
+        \item Mojo? (Modular (Python))
+    \end{itemize}
+
+\end{frame}
+
+
 
 
 \begin{frame}
