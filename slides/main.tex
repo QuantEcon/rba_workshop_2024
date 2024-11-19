@@ -3,7 +3,6 @@
     hyperref={colorlinks, citecolor=DeepPink4, linkcolor=DarkRed, urlcolor=DarkBlue}
     ]{beamer}  % for hardcopy add 'trans'
 
-
 \mode<presentation>
 {
   \usetheme{Singapore}
@@ -334,16 +333,13 @@
 
 \begin{frame}
 
-    Training: minimize the empirical loss
+    Nonlinear regression: choose model $\{f_\theta\}_{\theta \in \Theta}$ and minimize the empirical loss
     %
     \begin{equation*}
         \ell(\theta) := \sum_{i=1}^n (y_i - f_\theta(x_i))^2
         \quad \st \quad \theta \in \Theta
     \end{equation*}
 
-
-    \pause
-    But what is $\{f_\theta\}_{\theta \in \Theta}$?
 
     \pause
     \vspace{0.5em}
@@ -359,6 +355,10 @@
     %
     \begin{itemize}
         \item $A_{i} x = W_i x + b_i $ is an affine map 
+        \vspace{0.5em}
+        \begin{itemize}
+            \item \texttt{output = dot(kernel, input) + bias}
+        \end{itemize}
         \vspace{0.5em}
         \item $\sigma$ is a nonlinear ``activation'' function
     \end{itemize}
@@ -402,15 +402,20 @@
 \begin{frame}
     \frametitle{How does it work?}
     
-    Why is it possible in such high dimensions?
+    Why is it possible to minimize over $\theta \in \RR^d$ when $d=10^{12}$ ?!?
 
         \vspace{0.5em}
+        \vspace{0.5em}
+        \vspace{0.5em}
+        \vspace{0.5em}
+        \pause
+
     Core elements
     %
     \begin{itemize}
         \item automatic differentiation (for \underline{gradient} descent)
         \vspace{0.5em}
-        \item parallelization (GPUs! --- how many?)
+        \item parallelization (GPUs or TPUs)
         \vspace{0.5em}
         \item Compilers / JIT-compilers
     \end{itemize}
@@ -424,11 +429,19 @@
     ``Exact numerical'' differentiation
     
     \begin{minted}{python}
-def f(θ):
-  return jnp.sum(jnp.cos(θ))
 
-df = grad(f)
+def loss(θ, x, y):
+  return jnp.sum((y - f(θ, x))**2)
+
+loss_gradient = grad(loss))
+
     \end{minted}
+
+    \vspace{0.5em}
+    \vspace{0.5em}
+    \vspace{0.5em}
+    Now use gradient descent\ldots
+
 
 \end{frame}
 
@@ -436,13 +449,18 @@ df = grad(f)
 \begin{frame}[fragile]
     \frametitle{Parallelization}
 
-    \vspace{0.5em}
     
     \begin{minted}{python}
-outputs = vmap(f, data)  
-
 outputs = pmap(f, data)  
     \end{minted}
+
+    \vspace{0.5em}
+    \vspace{0.5em}
+    \begin{itemize}
+        \item multithreading over GPU cores (how many?)
+        \vspace{0.5em}
+        \item multiprocessing over accelerators in a GPU farm (how many?)
+    \end{itemize}
 
 \end{frame}
 
@@ -477,27 +495,6 @@ def f(x):
         \item can specialize based on parameter types / shapes
         \item can automatically specialize to CPU / GPU / TPU 
     \end{itemize}
-
-\end{frame}
-
-\begin{frame}[fragile]
-    
-    \vspace{-1em}
-    \begin{minted}{python}
-import jax.numpy as jnp
-from jax import grad, jit
-
-def f(θ, x):
-  for W, b in θ:
-    w = W @ x + b
-    x = jnp.tanh(w)  
-  return x
-
-def loss(θ, x, y):
-  return jnp.sum((y - f(θ, x))**2)
-
-grad_loss = jit(grad(loss))  # Now use gradient descent 
-    \end{minted}
 
 \end{frame}
 
@@ -536,6 +533,50 @@ grad_loss = jit(grad(loss))  # Now use gradient descent
 
 \end{frame}
 
+
+\begin{frame}
+    \frametitle{Focus on JAX}
+    
+    \begin{itemize}
+        \item \brown{J}ust-in-time compilation
+            \vspace{0.5em}
+        \item \brown{A}utomatic differentiation
+            \vspace{0.5em}
+        \item \brown{X}ccelerated linear algebra
+    \end{itemize}
+
+            \vspace{0.5em}
+            \vspace{0.5em}
+    Advantages for economists:
+    %
+    \begin{itemize}
+        \item exposes low level functions
+            \vspace{0.5em}
+        \item elegant functional programming style -- close to maths
+    \end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]
+    
+    \vspace{-1em}
+    \begin{minted}{python}
+import jax.numpy as jnp
+from jax import grad, jit
+
+def f(θ, x):
+  for W, b in θ:
+    w = W @ x + b
+    x = jnp.tanh(w)  
+  return x
+
+def loss(θ, x, y):
+  return jnp.sum((y - f(θ, x))**2)
+
+grad_loss = jit(grad(loss))  # Now use gradient descent 
+    \end{minted}
+
+\end{frame}
 
 
 \begin{frame}
