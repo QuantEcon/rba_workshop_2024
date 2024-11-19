@@ -433,7 +433,7 @@
 def loss(θ, x, y):
   return jnp.sum((y - f(θ, x))**2)
 
-loss_gradient = grad(loss))
+loss_gradient = grad(loss)
 
     \end{minted}
 
@@ -493,7 +493,7 @@ def f(x):
     \begin{itemize}
         \item compiler needs less type information
         \item can specialize based on parameter types / shapes
-        \item can automatically specialize to CPU / GPU / TPU 
+        \item can automatically specialize to CPUs / GPU / TPU 
     \end{itemize}
 
 \end{frame}
@@ -505,6 +505,8 @@ def f(x):
 
     \vspace{0.5em}
     \begin{itemize}
+        \item Tensorflow
+        \vspace{0.5em}
         \item PyTorch (Llama, ChatGPT)
         \vspace{0.5em}
         \item Google JAX (Gemini, DeepMind)
@@ -512,6 +514,8 @@ def f(x):
         \item Keras (backends $=$ JAX, PyTorch)
         \vspace{0.5em}
         \item Mojo? (Modular (Python))
+        \vspace{0.5em}
+        \item MATLAB? 
     \end{itemize}
 
 \end{frame}
@@ -553,6 +557,8 @@ def f(x):
         \item exposes low level functions
             \vspace{0.5em}
         \item elegant functional programming style -- close to maths
+            \vspace{0.5em}
+        \item automatic parallelization
     \end{itemize}
 
 \end{frame}
@@ -609,16 +615,28 @@ grad_loss = jit(grad(loss))  # Now use gradient descent
 \begin{frame}
     \frametitle{AI tools for economic modeling}
 
-    AI-driven scientific computing provides many powerful new tools
+
+    Let's say that you want to do computational macro rather than deep learning
+    per se
 
     \vspace{0.5em}
-    And most of the relevent code is open source
+    Can these new AI tools be applied?
+
+    \pause
 
     \vspace{0.5em}
-    Can be used for deep learning \underline{or} mathematical modeling
-
     \vspace{0.5em}
-    In particular, can be used to accelerate macro models
+    Answer: Yes!
+
+    \begin{itemize}
+        \item fast matrix algebra
+        \vspace{0.5em}
+        \item fast solutions to linear systems
+        \vspace{0.5em}
+        \item fast nonlinear system solvers
+        \vspace{0.5em}
+        \item fast optimization, etc.
+    \end{itemize}
 
 
 \end{frame}
@@ -638,15 +656,15 @@ grad_loss = jit(grad(loss))  # Now use gradient descent
     CBC implementation in MATLAB 
 
     \begin{itemize}
-        \item runs on \$10K mainframe with 356 CPUs and 1TB RAM
+        \item runs on \$10,000 mainframe with 356 CPUs and 1TB RAM
         \item runtime $=$ 12 hours
     \end{itemize}
 
     \vspace{0.5em}
-    Rewrite in Python JAX
+    Rewrite in Python + Google JAX
 
     \begin{itemize}
-        \item runs on \$400 gaming GPU 
+        \item runs on \$400 gaming GPU with 10GB RAM
         \item runtime $=$ 4.17 seconds
     \end{itemize}
 
