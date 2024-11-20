@@ -300,6 +300,8 @@
 
 
 
+
+
 \begin{frame}
     \frametitle{Deep learning in two slides}
     
@@ -307,7 +309,7 @@
     %
     \begin{equation*}
         y = f(x)
-        \qquad (x \in \RR^d, \; y \in \RR)
+        \qquad (x \in \RR^k, \; y \in \RR)
     \end{equation*}
 
     \Egs
@@ -459,7 +461,8 @@ outputs = pmap(f, data)
     \begin{itemize}
         \item multithreading over GPU cores (how many?)
         \vspace{0.5em}
-        \item multiprocessing over accelerators in a GPU farm (how many?)
+        \item multiprocessing over accelerators in a GPU farm / supercomputing
+            cluster (how many?)
     \end{itemize}
 
 \end{frame}
@@ -540,7 +543,10 @@ def f(x):
 
 \begin{frame}
     \frametitle{Focus on JAX}
+
+    \url{https://jax.readthedocs.io/en/latest/}
     
+            \vspace{0.5em}
     \begin{itemize}
         \item \brown{J}ust-in-time compilation
             \vspace{0.5em}
@@ -551,17 +557,9 @@ def f(x):
 
             \vspace{0.5em}
             \vspace{0.5em}
-    Advantages for economists:
-    %
-    \begin{itemize}
-        \item exposes low level functions
-            \vspace{0.5em}
-        \item elegant functional programming style -- close to maths
-            \vspace{0.5em}
-        \item automatic parallelization
-    \end{itemize}
 
 \end{frame}
+
 
 \begin{frame}[fragile]
     
@@ -643,6 +641,27 @@ grad_loss = jit(grad(loss))  # Now use gradient descent
 
 
 \begin{frame}
+
+    Advantages of JAX (vs PyTorch / Numba / etc.) for economists:
+    %
+    \begin{itemize}
+        \item exposes low level functions
+            \vspace{0.5em}
+        \item elegant functional programming style -- close to maths
+            \vspace{0.5em}
+        \item elegant autodiff tools
+            \vspace{0.5em}
+        \item array operations follow standard NumPy API
+            \vspace{0.5em}
+        \item automatic parallelization
+            \vspace{0.5em}
+        \item same code, multiple backends (CPUs, GPUs, TPUs)
+    \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
     \frametitle{Case Study}
 
     The CBC uses the ``overborrowing'' model of Bianchi (2011)
@@ -670,6 +689,31 @@ grad_loss = jit(grad(loss))  # Now use gradient descent
 
 \end{frame}
 
+
+\begin{frame}
+    \frametitle{Live coding}
+
+    See notebook \texttt{fun\_with\_jax.ipynb} in
+    
+    \begin{center}
+        \url{https://github.com/QuantEcon/rba_workshop_2024}
+    \end{center}
+
+    \vspace{0.5em}
+    Steps
+    %
+    \begin{enumerate}
+    \item Go to Google Colab (\url{https://colab.google/})
+    \vspace{0.5em}
+    \item Open notebook $\to$ GitHub $\to$ quantecon $\to$ \texttt{rba\_workshop\_2024}
+        $\to$ \texttt{fun\_with\_jax.ipynb}
+    \vspace{0.5em}
+    \item Edit $\to$ Notebook settings $\to$ select a GPU
+    \vspace{0.5em}
+    \item Runtime $\to$ Run all
+    \end{enumerate}
+
+\end{frame}
 
 
 \end{document}
