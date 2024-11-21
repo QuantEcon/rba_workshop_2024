@@ -492,15 +492,35 @@ def f(x):
     return jnp.sin(x) - jnp.cos(x**2)
     \end{minted}
 
-    Advantages:
+    \vspace{0.5em}
+    Advantages over AOT compilers:
 
     \begin{itemize}
-        \item compiler needs less type information
-        \item can specialize based on parameter types / shapes
-        \item can automatically specialize to CPUs / GPU / TPU 
+        \item cleaner code
+    \vspace{0.5em}
+        \item more portable
+    \vspace{0.5em}
+        \item automatic parallelization (same code for CPUs / GPUs)
     \end{itemize}
 
 \end{frame}
+
+
+\begin{frame}
+    
+    Advantages over NumPy / MATLAB
+
+    \vspace{0.5em}
+    \begin{itemize}
+        \item can specialize machine code based on parameter types / shapes
+        \vspace{0.5em}
+        \item automatically matches tasks with accelerators (GPU / TPU)
+        \vspace{0.5em}
+        \item fuses array operations for speed and memory efficiency
+    \end{itemize}
+
+\end{frame}
+
 
 \begin{frame}
     \frametitle{Platforms}
@@ -511,9 +531,9 @@ def f(x):
     \begin{itemize}
         \item Tensorflow
         \vspace{0.5em}
-        \item PyTorch (Llama, ChatGPT)
+        \item \brown{PyTorch} (Llama, ChatGPT)
         \vspace{0.5em}
-        \item Google JAX (Gemini, DeepMind)
+        \item \brown{Google JAX} (Gemini, DeepMind)
         \vspace{0.5em}
         \item Keras (backends $=$ JAX, PyTorch)
         \vspace{0.5em}
@@ -616,7 +636,6 @@ grad_loss = jit(grad(loss))  # Now use gradient descent
 
 
     Let's say that you want to do computational macro rather than deep learning
-    per se
 
     \vspace{0.5em}
     Can these new AI tools be applied?
@@ -625,7 +644,7 @@ grad_loss = jit(grad(loss))  # Now use gradient descent
 
     \vspace{0.5em}
     \vspace{0.5em}
-    Answer: Yes!
+    Yes!
 
     \begin{itemize}
         \item fast matrix algebra
@@ -695,7 +714,7 @@ grad_loss = jit(grad(loss))  # Now use gradient descent
 \begin{frame}
     \frametitle{Live coding}
 
-    See notebook \texttt{fun\_with\_jax.ipynb} in
+    See notebooks in
     
     \begin{center}
         \url{https://github.com/QuantEcon/rba_workshop_2024}
@@ -708,11 +727,11 @@ grad_loss = jit(grad(loss))  # Now use gradient descent
     \item Go to Google Colab (\url{https://colab.google/})
     \vspace{0.5em}
     \item Open notebook $\to$ GitHub $\to$ quantecon $\to$ \texttt{rba\_workshop\_2024}
-        $\to$ \texttt{fun\_with\_jax.ipynb}
+        $\to$ select notebook
     \vspace{0.5em}
     \item Edit $\to$ Notebook settings $\to$ select a GPU
     \vspace{0.5em}
-    \item Runtime $\to$ Run all
+    \item Shift-enter to run each cell
     \end{enumerate}
 
 \end{frame}
