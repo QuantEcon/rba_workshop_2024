@@ -79,6 +79,8 @@ Our transformation will be the cosine function.
 
 +++
 
+### With NumPy
+
 Here we evaluate the cosine function at 50 points.
 
 ```{code-cell} ipython3
@@ -93,8 +95,6 @@ fig, ax = plt.subplots()
 ax.scatter(x, y)
 plt.show()
 ```
-
-Our aim is to evaluate the cosine function at many points.
 
 +++
 

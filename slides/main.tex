@@ -202,7 +202,7 @@
 
 
 
-\title{AI is Driving a Revolution in Scientific Computing}
+\title{An AI-Driven Revolution in Scientific Computing}
 
 
 
@@ -291,10 +291,11 @@
 
         \vspace{0.5em}
         \vspace{0.5em}
+    Software component is mainly open source
         \vspace{0.5em}
         \vspace{0.5em}
 
-    What kinds of problems are they solving?
+    What does this software do?
 
 \end{frame}
 
@@ -349,14 +350,14 @@
     %
     \begin{equation*}
         f_\theta
-        = \sigma \circ A_{1} 
-            \circ \cdots \circ \sigma \circ A_{k-1}  \circ \sigma \circ A_{k}
+        = \sigma \circ A_{m} 
+            \circ \cdots \circ \sigma \circ A_{2}  \circ \sigma \circ A_{1}
     \end{equation*}
     %
     where
     %
     \begin{itemize}
-        \item $A_{i} x = W_i x + b_i $ is an affine map 
+        \item $A_{j} x = W_j x + b_j $ is an affine map 
         \vspace{0.5em}
         \begin{itemize}
             \item \texttt{output = dot(kernel, input) + bias}
@@ -679,6 +680,7 @@ grad_loss = jit(grad(loss))  # Now use gradient descent
         \item runtime $=$ 12 hours
     \end{itemize}
 
+    \pause
     \vspace{0.5em}
     Rewrite in Python + Google JAX
 
